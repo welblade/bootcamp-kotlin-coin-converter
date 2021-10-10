@@ -1,9 +1,11 @@
 package br.com.dio.coinconverter.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import br.com.dio.coinconverter.core.extensions.text
 import br.com.dio.coinconverter.data.model.Coin
 import br.com.dio.coinconverter.databinding.ActivityMainBinding
 
@@ -23,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             binding.btnConvert.isEnabled = !it.isNullOrEmpty()
         }
         binding.btnConvert.setOnClickListener {
-
+                Log.e("TAG", "bindListeners: " + binding.tilValue.text)
         }
     }
 

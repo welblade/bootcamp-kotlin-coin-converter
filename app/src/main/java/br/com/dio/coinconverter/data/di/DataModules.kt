@@ -1,6 +1,7 @@
 package br.com.dio.coinconverter.data.di
 
 import android.util.Log
+import br.com.dio.coinconverter.data.service.AwesomeService
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -34,7 +35,7 @@ object DataModules {
             }
 
             single {
-
+                createService<AwesomeService>(get(), get())
             }
         }
     }
