@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintEnd_toEndOf="@id/gl_end"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="Value"
+        android:hint="@string/value"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -57,7 +57,7 @@
         android:layout_marginEnd="@dimen/layout_half_padding"
         android:layout_marginTop="@dimen/layout_padding"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:hint="Convert from"
+        android:hint="@string/convert_from"
         android:focusable="false"
         >
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
@@ -76,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="@id/gl_end"
         android:layout_marginStart="@dimen/layout_half_padding"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:hint="To"
+        android:hint="@string/to"
         android:focusable="false"
         >
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
@@ -94,6 +94,16 @@
         app:layout_constraintEnd_toEndOf="@id/gl_end"
         android:layout_marginTop="@dimen/layout_padding"
         android:enabled="false"
-        android:text="Convert" />
-
+        android:text="@string/convert" />
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@id/btn_convert"
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
+        tools:text="5,55"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Coin Converter</string>
+    <string name="value">Value</string>
+    <string name="convert_from">Convert from</string>
+    <string name="to">To</string>
+    <string name="convert">Convert</string>
 </resources>
