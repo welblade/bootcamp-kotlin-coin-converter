@@ -28,9 +28,16 @@ class HistoryActivity : AppCompatActivity(){
             )
         )
 
-        bindObserver()
-
         lifecycle.addObserver(viewModel)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled (true)
+        bindObserver()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     private fun bindObserver() {

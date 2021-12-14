@@ -18,7 +18,7 @@ class HistoryViewModel(
     val state: LiveData<State> = _state
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    private fun getExchangeHistory(coin: String) {
+    private fun getExchangeHistory() {
         viewModelScope.launch {
             useCase()
                 .flowOn(Dispatchers.Main)

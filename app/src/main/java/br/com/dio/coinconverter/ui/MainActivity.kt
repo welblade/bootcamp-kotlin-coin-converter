@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         bindAdapters()
         bindListeners()
         bindingObservers()
+        setSupportActionBar(binding.toolbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
