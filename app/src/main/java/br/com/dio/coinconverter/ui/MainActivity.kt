@@ -1,26 +1,44 @@
 package br.com.dio.coinconverter.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import br.com.dio.coinconverter.R
 import br.com.dio.coinconverter.core.extensions.*
 import br.com.dio.coinconverter.data.model.Coin
 import br.com.dio.coinconverter.databinding.ActivityMainBinding
 import br.com.dio.coinconverter.presentation.MainViewModel
+import br.com.dio.coinconverter.ui.history.HistoryActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModel<MainViewModel>()
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val progress by lazy { createProgressDialog() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         bindAdapters()
         bindListeners()
         bindingObservers()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.action_history) {
+            startActivity(Intent(this, HistoryActivity::class.java))
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun bindingObservers() {
@@ -38,13 +56,18 @@ class MainActivity : AppCompatActivity() {
                 is MainViewModel.State.Success -> {
                     progress.dismiss()
                     val coinToConverterName = binding.tilTo.text
-                    val coinToConverter = Coin.values().find {
-                            coin -> coin.name == coinToConverterName
-                    } ?: Coin.BRL
+                    val coinToConverter = Coin.getByName(coinToConverterName)
                     val valueToConverter = binding.tilValue.text.toDouble()
                     val result = valueToConverter * it.exchange.bid
                     binding.tvResult.text = result.formatCurrency(coinToConverter.locale)
+                    binding.btnSave.isEnabled = true
                     Log.e("Converting", "onCreate: ${it.exchange}")
+                }
+                MainViewModel.State.Saved -> {
+                    progress.dismiss()
+                    createDialog {
+                        setMessage("Conversão salva com sucesso.")
+                    }.show()
                 }
             }
         }
@@ -59,6 +82,13 @@ class MainActivity : AppCompatActivity() {
             val currency = "${binding.tilFrom.text}-${binding.tilTo.text}"
             viewModel.getExchangeValue(currency)
             Log.e("TAG", "bindListeners: " + binding.tilValue.text)
+        }
+        binding.btnSave.setOnClickListener {
+            val value = viewModel.state.value
+            (value as? MainViewModel.State.Success)?.let{
+                viewModel.saveExchange(it.exchange)
+                binding.btnSave.isEnabled = false
+            }
         }
     }
 

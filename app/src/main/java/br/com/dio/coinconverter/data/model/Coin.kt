@@ -6,5 +6,11 @@ enum class Coin(val locale: Locale) {
     USD(Locale.US),
     CAD(Locale.CANADA),
     BRL(Locale("pt", "BR")),
-    ARS(Locale("es", "AR"))
+    ARS(Locale("es", "AR"));
+
+    companion object {
+        fun getByName(name: String):Coin {
+            return values().find { it.name == name } ?: Coin.BRL
+        }
+    }
 }

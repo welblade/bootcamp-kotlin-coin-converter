@@ -10,6 +10,7 @@ class SaveExchangeUseCase(private val repository: CoinRepository):UseCase.NoSour
     override suspend fun execute(param: ExchangeResponseValue): Flow<Unit> {
         return flow {
             repository.save(param)
+            emit(Unit)
         }
     }
 }
