@@ -2,6 +2,8 @@ package br.com.dio.coinconverter.data.di
 
 import android.util.Log
 import br.com.dio.coinconverter.data.database.AppDatabase
+import br.com.dio.coinconverter.data.repository.CoinListRepository
+import br.com.dio.coinconverter.data.repository.CoinListRepositoryImpl
 import br.com.dio.coinconverter.data.repository.CoinRepository
 import br.com.dio.coinconverter.data.repository.CoinRepositoryImpl
 import br.com.dio.coinconverter.data.service.AwesomeService
@@ -46,6 +48,7 @@ object DataModules {
 
     private fun repositoryModule() = module {
         single<CoinRepository> { CoinRepositoryImpl(get(), get()) }
+        single<CoinListRepository> { CoinListRepositoryImpl() }
     }
 
     private fun databaseModule(): Module {

@@ -56,12 +56,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 is MainViewModel.State.Success -> {
                     progress.dismiss()
-                    val coinToConverterName = binding.tilTo.text
-                    val coinToConverter = Coin.getByName(coinToConverterName)
+                    //val coinToConverterName = binding.tilTo.text
+                    //val coinToConverter = Coin.getByName(coinToConverterName)
                     val valueToConverter = binding.tilValue.text.toDouble()
                     val result = valueToConverter * it.exchange.bid
-                    binding.tvResult.text = result.formatCurrency(coinToConverter.locale)
-                    binding.btnSave.isEnabled = true
+                    //binding.tvResult.text = result.formatCurrency(coinToConverter.locale)
+                    //binding.btnSave.isEnabled = true
                     Log.e("Converting", "onCreate: ${it.exchange}")
                 }
                 MainViewModel.State.Saved -> {
@@ -80,28 +80,28 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnConvert.setOnClickListener {
             it.hideSoftKeyboard()
-            val currency = "${binding.tilFrom.text}-${binding.tilTo.text}"
-            viewModel.getExchangeValue(currency)
+            //val currency = "${binding.tilFrom.text}-${binding.tilTo.text}"
+            //viewModel.getExchangeValue(currency)
             Log.e("TAG", "bindListeners: " + binding.tilValue.text)
         }
-        binding.btnSave.setOnClickListener {
+        /*binding.btnSave.setOnClickListener {
             val value = viewModel.state.value
             (value as? MainViewModel.State.Success)?.let{
                 viewModel.saveExchange(it.exchange)
                 binding.btnSave.isEnabled = false
             }
-        }
+        }*/
     }
 
     private fun bindAdapters(){
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, Coin.values())
-        binding.tvFrom.apply{
+        /* binding.tvFrom.apply{
             setAdapter(adapter)
             setText(Coin.BRL.name, false)
         }
         binding.tvTo.apply {
             setAdapter(adapter)
             setText(Coin.USD.name, false)
-        }
+        } */
     }
 }
