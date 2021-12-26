@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    style="@style/Theme.CoinConverter.CardView.Button"
+    android:theme="@style/Theme.CoinConverter.CardView.Button"
+    android:layout_marginBottom="@dimen/layout_half_padding"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/layout_padding"
+        android:background="@color/coin_button_background"
+        >
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            app:layout_constraintDimensionRatio="6:4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingTop="6dp"
+            tools:src="@tools:sample/backgrounds/scenic"
+            android:contentDescription="@string/coin_s_origin_country_flag" />
+
+        <TextView
+            android:id="@+id/tv_abbr_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/iv_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_icon"
+            style="@style/Theme.CoinConverter.CardView.Button.Label"
+            tools:text="USD"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/iv_icon"
+            app:layout_constraintTop_toBottomOf="@id/tv_abbr_name"
+            app:layout_constraintBottom_toBottomOf="@id/iv_icon"
+            style="@style/Theme.CoinConverter.CardView.Button.Subtitle"
+            tools:text="@tools:sample/full_names"/>
+
+        <TextView
+            android:id="@+id/tv_converted_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_icon"
+            style="@style/Theme.CoinConverter.CardView.Button.Label"
+            tools:text="@tools:sample/full_names"/>
+
+        <TextView
+            android:id="@+id/tv_rate_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_abbr_name"
+            app:layout_constraintBottom_toBottomOf="@id/iv_icon"
+            style="@style/Theme.CoinConverter.CardView.Button.Subtitle"
+            android:text="@string/_1_coin_0_00_coin"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
