@@ -25,6 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/layout_half_padding"
+
         tools:layout="@layout/fragment_coin_button_list"/>
 
 
@@ -57,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="numberDecimal"
-            android:text="2000,00" />
+            android:text="0,00" />
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -84,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@id/div_rates"
         app:layout_constraintEnd_toEndOf="@id/gl_end"
         app:layout_constraintBottom_toBottomOf="@id/div_rates"
-        android:textAppearance="@style/Theme.CoinConverter.Divider.Text"
+        style="@style/Theme.CoinConverter.Divider.Text"
         android:text="@string/exchange_rates"
         />
 

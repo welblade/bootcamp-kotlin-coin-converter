@@ -12,12 +12,11 @@ import kotlinx.coroutines.launch
 
 class CoinButtonListViewModel(
     private val listCoinUseCase: ListCoinUseCase
-):ViewModel(), LifecycleObserver {
+):ViewModel() {
     private val _state = MutableLiveData<State>()
     val state: LiveData<State> = _state
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    private fun getCoinList() {
+    fun getCoinList() {
         viewModelScope.launch {
             listCoinUseCase()
                 .flowOn(Dispatchers.Main)

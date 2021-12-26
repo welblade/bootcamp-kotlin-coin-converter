@@ -1,6 +1,5 @@
 package br.com.dio.coinconverter.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -13,7 +12,6 @@ import br.com.dio.coinconverter.core.extensions.*
 import br.com.dio.coinconverter.data.model.Coin
 import br.com.dio.coinconverter.databinding.ActivityMainBinding
 import br.com.dio.coinconverter.presentation.MainViewModel
-import br.com.dio.coinconverter.ui.history.HistoryActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +25,16 @@ class MainActivity : AppCompatActivity() {
         bindAdapters()
         bindListeners()
         bindingObservers()
+        setFragment()
         setSupportActionBar(binding.toolbar)
+    }
+
+    private fun setFragment() {
+        val buttonListFragment = CoinButtonListFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction
+            .replace(binding.fcvCoinButtonList.id, buttonListFragment)
+            .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -36,8 +43,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.action_history) {
-            startActivity(Intent(this, HistoryActivity::class.java))
+        if (item.itemId == R.id.action_history) {
+            //startActivity(Intent(this, HistoryActivity::class.java))
+            Log.e("ok", "ok")
         }
         return super.onOptionsItemSelected(item)
     }
@@ -93,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         }*/
     }
 
-    private fun bindAdapters(){
+    private fun bindAdapters() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, Coin.values())
         /* binding.tvFrom.apply{
             setAdapter(adapter)

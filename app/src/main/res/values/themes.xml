@@ -43,8 +43,8 @@
         <item name="android:textStyle">bold</item>
     </style>
     <style name="Theme.CoinConverter.Divider.Text" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="android:paddingStart">30dp</item>
-        <item name="android:paddingEnd">30dp</item>
+        <item name="android:paddingStart">@dimen/layout_half_padding</item>
+        <item name="android:paddingEnd">@dimen/layout_half_padding</item>
         <item name="android:textColor">@color/silver_sand</item>
         <item name="backgroundTint">@color/oxford_blue</item>
         <item name="android:textStyle">normal</item>
@@ -66,7 +66,7 @@
         <item name="rippleColor">@color/mtrl_card_view_ripple</item>
         <item name="android:textAppearance">@style/Theme.CoinConverter.CardView.Button.Label</item>
     </style>
-    <style name="Theme.CoinConverter.CardView.Button.Label" parent="TextAppearance.AppCompat.Small">
+    <style name="Theme.CoinConverter.CardView.Button.Label" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@color/coin_button_background</item>
         <item name="android:textStyle">normal</item>

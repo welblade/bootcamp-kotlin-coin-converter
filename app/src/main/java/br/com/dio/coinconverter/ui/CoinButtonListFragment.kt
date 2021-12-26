@@ -31,6 +31,7 @@ class CoinButtonListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setRecyclerView()
         setViewModelObserver()
+        coinButtonListViewModel.getCoinList()
     }
 
     private fun setRecyclerView() {
@@ -40,7 +41,7 @@ class CoinButtonListFragment : Fragment() {
     private fun setViewModelObserver() {
         coinButtonListViewModel.state.observe(viewLifecycleOwner){
             when(it){
-                CoinButtonListViewModel.State.Empty -> TODO()
+                CoinButtonListViewModel.State.Empty -> {}
                 CoinButtonListViewModel.State.Loading -> progress.show()
                 is CoinButtonListViewModel.State.Error -> {
                     progress.dismiss()

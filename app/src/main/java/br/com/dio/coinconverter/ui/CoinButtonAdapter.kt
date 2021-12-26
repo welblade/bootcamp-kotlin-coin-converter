@@ -2,10 +2,9 @@ package br.com.dio.coinconverter.ui
 
 import android.net.Uri
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.dio.coinconverter.data.model.Coin
 import br.com.dio.coinconverter.databinding.ItemCoinButtonBinding
@@ -27,18 +26,19 @@ class CoinButtonAdapter : ListAdapter<Coin, CoinButtonAdapter.ViewHolder>(DiffCa
 
     inner class ViewHolder(
         private val binding: ItemCoinButtonBinding
-        ):RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(coin: Coin){
+        fun bind(coin: Coin) {
             Glide.with(binding.root.context)
                 .load(Uri.parse(coin.iconUrl))
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                //.diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.ivIcon)
             binding.tvAbbrName.text = coin.name
         }
     }
 }
-class DiffCallBack : DiffUtil.ItemCallback<Coin>(){
+
+class DiffCallBack : DiffUtil.ItemCallback<Coin>() {
     override fun areItemsTheSame(
         oldItem: Coin,
         newItem: Coin
