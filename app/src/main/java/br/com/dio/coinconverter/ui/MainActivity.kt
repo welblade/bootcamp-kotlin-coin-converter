@@ -1,5 +1,7 @@
 package br.com.dio.coinconverter.ui
 
+import kotlin.math.abs as abs
+
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -8,7 +10,10 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import br.com.dio.coinconverter.R
-import br.com.dio.coinconverter.core.extensions.*
+import br.com.dio.coinconverter.core.extensions.createDialog
+import br.com.dio.coinconverter.core.extensions.createProgressDialog
+import br.com.dio.coinconverter.core.extensions.hideSoftKeyboard
+import br.com.dio.coinconverter.core.extensions.text
 import br.com.dio.coinconverter.data.model.Coin
 import br.com.dio.coinconverter.databinding.ActivityMainBinding
 import br.com.dio.coinconverter.presentation.MainViewModel
@@ -18,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModel<MainViewModel>()
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val progress by lazy { createProgressDialog() }
+    private val buttonListFragment by lazy{ CoinButtonListFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +36,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setFragment() {
-        val buttonListFragment = CoinButtonListFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction
             .replace(binding.fcvCoinButtonList.id, buttonListFragment)
@@ -90,7 +95,7 @@ class MainActivity : AppCompatActivity() {
             it.hideSoftKeyboard()
             //val currency = "${binding.tilFrom.text}-${binding.tilTo.text}"
             //viewModel.getExchangeValue(currency)
-            Log.e("TAG", "bindListeners: " + binding.tilValue.text)
+            Log.e("TAG", "bindListeners: ${buttonListFragment.getSelectedButton()}")
         }
         /*binding.btnSave.setOnClickListener {
             val value = viewModel.state.value
