@@ -34,6 +34,9 @@ class CoinButtonAdapter : ListAdapter<Coin, CoinButtonAdapter.ViewHolder>(DiffCa
                 //.diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.ivIcon)
             binding.tvAbbrName.text = coin.name
+            binding.root.setOnClickListener {
+                binding.root.toggle()
+            }
         }
     }
 }
@@ -50,7 +53,7 @@ class DiffCallBack : DiffUtil.ItemCallback<Coin>() {
         oldItem: Coin,
         newItem: Coin
     ): Boolean {
-        return oldItem == newItem
+        return oldItem.name == newItem.name
     }
 
 }

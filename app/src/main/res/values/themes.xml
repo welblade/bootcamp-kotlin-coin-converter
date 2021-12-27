@@ -59,16 +59,14 @@
     <style name="Theme.CoinConverter.CardView.Button" parent="Widget.MaterialComponents.CardView">
         <item name="enforceMaterialTheme">true</item>
         <item name="cardBackgroundColor">@color/coin_button_background</item>
+        <item name="android:background">@color/coin_button_background</item>
         <item name="cardCornerRadius">16dp</item>
-        <item name="cardElevation">@dimen/mtrl_card_elevation</item>
-        <item name="cardForegroundColor">@color/mtrl_card_view_foreground</item>
         <item name="checkedIcon">@null</item>
-        <item name="rippleColor">@color/mtrl_card_view_ripple</item>
+        <item name="rippleColor">@color/carolina_blue</item>
         <item name="android:textAppearance">@style/Theme.CoinConverter.CardView.Button.Label</item>
     </style>
     <style name="Theme.CoinConverter.CardView.Button.Label" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">@color/white</item>
-        <item name="android:background">@color/coin_button_background</item>
         <item name="android:textStyle">normal</item>
         <item name="android:padding">0dp</item>
         <item name="android:textSize">16sp</item>

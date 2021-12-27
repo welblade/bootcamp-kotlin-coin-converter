@@ -44,7 +44,7 @@ class CoinButtonListFragment : Fragment() {
                 CoinButtonListViewModel.State.Empty -> {}
                 CoinButtonListViewModel.State.Loading -> progress.show()
                 is CoinButtonListViewModel.State.Error -> {
-                    progress.dismiss()
+
                 }
                 is CoinButtonListViewModel.State.Success -> {
                     coinButtonAdapter.submitList(it.coins)
