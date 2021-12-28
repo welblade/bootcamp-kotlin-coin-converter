@@ -3,7 +3,7 @@ package br.com.dio.coinconverter.data.model
 enum class Coin(val coinName: String, val iconUrl: String) {
     BRL("Real Brasileiro", "https://flagcdn.com/h40/br.png"),
     USD("Dólar Americano", "https://flagcdn.com/h40/us.png"),
-    EUR("Euro", "https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg"),
+    EUR("Euro", "https://i.postimg.cc/RZFGBTfY/euro.png"),
     CAD("Dólar Canadense", "https://flagcdn.com/h40/ca.png"),
     BTC("Bitcoin", "https://i.postimg.cc/G3DvtRXb/bitcoin.png"),
     AUD("Dólar Australiano", "https://flagcdn.com/h40/au.png"),
@@ -21,7 +21,7 @@ enum class Coin(val coinName: String, val iconUrl: String) {
     GHS("Cedi Ganês", "https://flagcdn.com/h40/gh.png"),
     BOB("Boliviano", "https://flagcdn.com/h40/bo.png"),
     IDR("Rupia Indonésia", "https://flagcdn.com/h40/id.png"),
-    XRP("XRP", "https://flagcdn.com/h40/xr.png"),
+    XRP("XRP", "https://i.postimg.cc/q7KsJD71/xrp.png"),
     KYD("Dólar das Ilhas Cayman", "https://flagcdn.com/h40/ky.png"),
     TRY("Nova Lira Turca", "https://flagcdn.com/h40/tr.png"),
     IQD("Dinar Iraquiano", "https://flagcdn.com/h40/iq.png"),
