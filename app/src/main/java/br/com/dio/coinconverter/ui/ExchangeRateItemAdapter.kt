@@ -1,13 +1,16 @@
 package br.com.dio.coinconverter.ui
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.dio.coinconverter.R
+import br.com.dio.coinconverter.data.model.Coin
 import br.com.dio.coinconverter.data.model.ExchangeResponseValue
 import br.com.dio.coinconverter.databinding.ItemExchangeRateBinding
+import com.bumptech.glide.Glide
 import kotlin.properties.Delegates
 
 class ExchangeRateItemAdapter :
@@ -42,11 +45,17 @@ class ExchangeRateItemAdapter :
             binding.tvName.text = item.name.split("/").last()
             setConvertedValue(item.bid)
             setExchangeRate(item)
+            setFlag(item)
             changeCoinListeners.add {
                 setConvertedValue(item.bid)
             }
         }
-
+        private fun setFlag(item: ExchangeResponseValue){
+            Glide.with(binding.root.context)
+                .load(Uri.parse(Coin.getByName(item.codein).iconUrl))
+                //.diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(binding.ivIcon)
+        }
         private fun setConvertedValue(bid: Double) {
             val convertedValue = bid * valueToConvert
             binding.tvConvertedValue.text = convertedValue.toString()
