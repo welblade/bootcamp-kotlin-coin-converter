@@ -1,13 +1,10 @@
 package br.com.dio.coinconverter.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.selection.*
 import br.com.dio.coinconverter.core.extensions.createProgressDialog
 import br.com.dio.coinconverter.data.model.Coin
 import br.com.dio.coinconverter.databinding.FragmentCoinButtonListBinding
