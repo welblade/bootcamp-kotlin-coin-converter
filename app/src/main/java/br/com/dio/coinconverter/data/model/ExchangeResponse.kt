@@ -1,6 +1,5 @@
 package br.com.dio.coinconverter.data.model
 
-import android.util.Log
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName

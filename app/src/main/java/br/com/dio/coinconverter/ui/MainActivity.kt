@@ -1,14 +1,13 @@
 package br.com.dio.coinconverter.ui
 
-import kotlin.math.abs as abs
-
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.dio.coinconverter.R
 import br.com.dio.coinconverter.core.extensions.createDialog
 import br.com.dio.coinconverter.core.extensions.createProgressDialog
@@ -20,19 +19,25 @@ import br.com.dio.coinconverter.presentation.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel by viewModel<MainViewModel>()
+    private val mainViewModel by viewModel<MainViewModel>()
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val progress by lazy { createProgressDialog() }
-    private val buttonListFragment by lazy{ CoinButtonListFragment() }
-
+    private val buttonListFragment by lazy { CoinButtonListFragment() }
+    private val exchangeRateAdapter by lazy { ExchangeRateItemAdapter() }
+    private var lastCoinUsed: Coin? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        bindAdapters()
         bindListeners()
         bindingObservers()
         setFragment()
         setSupportActionBar(binding.toolbar)
+        setRecyclerView()
+    }
+
+    private fun setRecyclerView() {
+        binding.rvExchangeRateList.layoutManager = LinearLayoutManager(this)
+        binding.rvExchangeRateList.adapter = exchangeRateAdapter
     }
 
     private fun setFragment() {
@@ -56,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindingObservers() {
-        viewModel.state.observe(this) {
+        mainViewModel.state.observe(this) {
             when (it) {
                 MainViewModel.State.Loading -> {
                     progress.show()
@@ -69,52 +74,42 @@ class MainActivity : AppCompatActivity() {
                 }
                 is MainViewModel.State.Success -> {
                     progress.dismiss()
-                    //val coinToConverterName = binding.tilTo.text
-                    //val coinToConverter = Coin.getByName(coinToConverterName)
-                    val valueToConverter = binding.tilValue.text.toDouble()
-                    val result = valueToConverter * it.exchange.bid
-                    //binding.tvResult.text = result.formatCurrency(coinToConverter.locale)
-                    //binding.btnSave.isEnabled = true
-                    Log.e("Converting", "onCreate: ${it.exchange}")
-                }
-                MainViewModel.State.Saved -> {
-                    progress.dismiss()
-                    createDialog {
-                        setMessage("Conversão salva com sucesso.")
-                    }.show()
+                    exchangeRateAdapter.apply{
+                        submitList(it.response.values.toList())
+                    }
                 }
             }
         }
     }
 
     private fun bindListeners() {
-        binding.tilValue.editText?.doAfterTextChanged {
-            binding.btnConvert.isEnabled = !it.isNullOrEmpty()
+        buttonListFragment.doAfterCoinChanged {
+            binding.tvCoinAbbr.text = it.name
         }
+        binding.tilValue.editText
         binding.btnConvert.setOnClickListener {
+            binding.tilValue.isEnabled = false
             it.hideSoftKeyboard()
-            //val currency = "${binding.tilFrom.text}-${binding.tilTo.text}"
-            //viewModel.getExchangeValue(currency)
-            Log.e("TAG", "bindListeners: ${buttonListFragment.getSelectedButton()}")
+            convertValue()
+            toggleButtonVisibility()
         }
-        /*binding.btnSave.setOnClickListener {
-            val value = viewModel.state.value
-            (value as? MainViewModel.State.Success)?.let{
-                viewModel.saveExchange(it.exchange)
-                binding.btnSave.isEnabled = false
-            }
-        }*/
+        binding.btnEdit.setOnClickListener {
+            binding.tilValue.isEnabled = true
+            toggleButtonVisibility()
+        }
+    }
+    private fun toggleButtonVisibility(){
+        val visibility = binding.btnEdit.visibility
+        binding.btnEdit.visibility = binding.btnConvert.visibility
+        binding.btnConvert.visibility = visibility
     }
 
-    private fun bindAdapters() {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, Coin.values())
-        /* binding.tvFrom.apply{
-            setAdapter(adapter)
-            setText(Coin.BRL.name, false)
+    private fun convertValue(){
+        val coinToConvert = buttonListFragment.getSelectedButton()
+        if (lastCoinUsed == null || lastCoinUsed != coinToConvert){
+            mainViewModel.getExchangeValues(coinToConvert.name)
         }
-        binding.tvTo.apply {
-            setAdapter(adapter)
-            setText(Coin.USD.name, false)
-        } */
+        val valueToConvert = binding.tilValue.text.toDouble()
+        exchangeRateAdapter.convertExchange(valueToConvert)
     }
 }

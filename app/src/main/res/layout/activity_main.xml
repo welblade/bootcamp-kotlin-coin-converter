@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -25,23 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-
         tools:layout="@layout/fragment_coin_button_list" />
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gl_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/layout_extra_padding" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gl_end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/layout_extra_padding" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_value"
@@ -50,7 +33,9 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         app:layout_constraintStart_toStartOf="@id/gl_start"
-        app:layout_constraintTop_toBottomOf="@id/fcv_coin_button_list">
+        app:layout_constraintTop_toBottomOf="@id/fcv_coin_button_list"
+        android:enabled="false"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/Theme.CoinConverter.TextInputLayout.TextInputEditText"
@@ -61,6 +46,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        android:id="@+id/tv_coin_abbr"
         style="@style/Theme.CoinConverter.TextInputLayout.Suffix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -96,7 +82,24 @@
         android:layout_marginBottom="@dimen/layout_extra_padding"
         android:contentDescription="@string/edit_value_to_converter"
         android:minHeight="48dp"
+        android:src="@drawable/ic_done"
+        app:tint="@color/green_crayola"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/div_rates"
+        app:layout_constraintEnd_toEndOf="@id/gl_end" />
+
+    <ImageButton
+        android:id="@+id/btn_edit"
+        style="@style/Theme.CoinConverter.ImageButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/layout_extra_padding"
+        android:contentDescription="@string/edit_value_to_converter"
+        android:minHeight="48dp"
         android:src="@drawable/ic_edit"
+        android:visibility="visible"
+        tools:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/div_rates"
         app:layout_constraintEnd_toEndOf="@id/gl_end" />
 
@@ -111,4 +114,17 @@
         app:layout_constraintTop_toBottomOf="@id/div_rates"
         tools:listitem="@layout/item_exchange_rate" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/layout_extra_padding" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/layout_extra_padding" />
 </androidx.constraintlayout.widget.ConstraintLayout>

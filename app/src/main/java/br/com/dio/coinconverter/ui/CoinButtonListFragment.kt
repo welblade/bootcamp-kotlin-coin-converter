@@ -59,4 +59,8 @@ class CoinButtonListFragment : Fragment() {
     fun getSelectedButton():Coin{
         return coinButtonAdapter.getSelectedCoin()
     }
+
+    fun doAfterCoinChanged(init:(Coin)->Unit){
+        coinButtonAdapter.onChangeCoinListener(init)
+    }
 }

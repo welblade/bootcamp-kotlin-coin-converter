@@ -1,16 +1,17 @@
 package br.com.dio.coinconverter.data.di
 
 import android.util.Log
+import br.com.dio.coinconverter.core.utils.JsonDataAsset
 import br.com.dio.coinconverter.data.database.AppDatabase
-import br.com.dio.coinconverter.data.repository.CoinListRepository
-import br.com.dio.coinconverter.data.repository.CoinListRepositoryImpl
-import br.com.dio.coinconverter.data.repository.CoinRepository
-import br.com.dio.coinconverter.data.repository.CoinRepositoryImpl
+import br.com.dio.coinconverter.data.datasource.AvailableExchangeDatasource
+import br.com.dio.coinconverter.data.datasource.AvailableExchangeDatasourceImpl
+import br.com.dio.coinconverter.data.repository.*
 import br.com.dio.coinconverter.data.service.AwesomeService
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -21,7 +22,12 @@ object DataModules {
     private const val HTTP_TAG = "OkHttp"
 
     fun load(){
-        loadKoinModules(networkModule() + repositoryModule() + databaseModule())
+        loadKoinModules(
+            networkModule()
+                    + repositoryModule()
+                    + databaseModule()
+                    + datasourceModule()
+        )
     }
 
     private fun networkModule(): Module {
@@ -49,11 +55,19 @@ object DataModules {
     private fun repositoryModule() = module {
         single<CoinRepository> { CoinRepositoryImpl(get(), get()) }
         single<CoinListRepository> { CoinListRepositoryImpl() }
+        single<AvailableExchangeRepository> { AvailableExchangeRepositoryImpl(get()) }
     }
 
     private fun databaseModule(): Module {
         return module {
             single { AppDatabase.getInstance(androidApplication())}
+        }
+    }
+
+    private fun datasourceModule(): Module{
+        return module {
+            factory { JsonDataAsset(androidContext()) }
+            single<AvailableExchangeDatasource> { AvailableExchangeDatasourceImpl(get()) }
         }
     }
 

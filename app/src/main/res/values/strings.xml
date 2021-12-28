@@ -9,5 +9,5 @@
     <string name="coin_s_origin_country_flag">Coin\'s origin coutry flag</string>
     <string name="exchange_rates">Exchange Rates</string>
     <string name="edit_value_to_converter">Edit value to converter</string>
-    <string name="_1_coin_0_00_coin">1 Coin = 0.00 Coin</string>
+    <string name="exchange_rate_formated">1 %1$s = %3$s %2$s</string>
 </resources>

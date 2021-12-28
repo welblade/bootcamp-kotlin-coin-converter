@@ -15,16 +15,15 @@ import retrofit2.HttpException
 class CoinRepositoryImpl(
     appDatabase: AppDatabase,
     private val service: AwesomeService
-    ) : CoinRepository {
+) : CoinRepository {
 
     private val dao = appDatabase.exchangeDao()
 
     override suspend fun getExchangeValue(coins: String) = flow {
         try {
             val exchangeValue = service.exchangeValue(coins)
-            val exchange = exchangeValue.values.first()
-            emit(exchange)
-        } catch(exception: HttpException){
+            emit(exchangeValue)
+        } catch (exception: HttpException) {
             val json = exception.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(json, ErrorResponse::class.java)
             throw AwesomeApiException(errorResponse.message)
