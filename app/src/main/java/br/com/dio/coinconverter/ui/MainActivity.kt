@@ -1,18 +1,22 @@
 package br.com.dio.coinconverter.ui
 
+import android.graphics.Rect
 import android.os.Bundle
+import android.text.InputFilter
+import android.text.Spanned
+import android.text.method.TransformationMethod
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.dio.coinconverter.R
-import br.com.dio.coinconverter.core.extensions.createDialog
-import br.com.dio.coinconverter.core.extensions.createProgressDialog
-import br.com.dio.coinconverter.core.extensions.hideSoftKeyboard
-import br.com.dio.coinconverter.core.extensions.text
+import br.com.dio.coinconverter.core.extensions.*
+import br.com.dio.coinconverter.core.utils.MaskWatcher
 import br.com.dio.coinconverter.data.model.Coin
 import br.com.dio.coinconverter.databinding.ActivityMainBinding
 import br.com.dio.coinconverter.presentation.MainViewModel
@@ -86,7 +90,9 @@ class MainActivity : AppCompatActivity() {
         buttonListFragment.doAfterCoinChanged {
             binding.tvCoinAbbr.text = it.name
         }
-        binding.tilValue.editText
+
+        binding.tilValue.editText!!.addTextChangedListener(MaskWatcher())
+
         binding.btnConvert.setOnClickListener {
             binding.tilValue.isEnabled = false
             it.hideSoftKeyboard()
@@ -109,7 +115,7 @@ class MainActivity : AppCompatActivity() {
         if (lastCoinUsed == null || lastCoinUsed != coinToConvert){
             mainViewModel.getExchangeValues(coinToConvert.name)
         }
-        val valueToConvert = binding.tilValue.text.toDouble()
+        val valueToConvert = binding.tilValue.text.replace(",", ".").toDouble()
         exchangeRateAdapter.convertExchange(valueToConvert)
     }
 }

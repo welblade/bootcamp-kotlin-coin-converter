@@ -41,9 +41,15 @@
         <com.google.android.material.textfield.TextInputEditText
             style="@style/Theme.CoinConverter.TextInputLayout.TextInputEditText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="100dp"
             android:inputType="number"
-            android:text="0,00" />
+            android:digits="0123456789"
+            android:maxLength="10"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="16sp"
+            app:autoSizeMaxTextSize="30sp"
+            app:autoSizeStepGranularity="2sp"
+            android:text="1234567,00" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
