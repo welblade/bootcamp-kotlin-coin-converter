@@ -63,7 +63,25 @@ enum class Coin(val coinName: String, val iconUrl: String) {
     SGD("Dólar de Cingapura", "https://flagcdn.com/h40/sg.png"),
     NIO("Córdoba Nicaraguense", "https://flagcdn.com/h40/ni.png"),
     PEN("Sol do Peru", "https://flagcdn.com/h40/pe.png"),
-
+    QAR("Rial Catarense", "https://flagcdn.com/h40/qa.png"),
+    NPR("Rúpia Nepalesa", "https://flagcdn.com/h40/np.png"),
+    JMD("Dólar Jamaicano", "https://flagcdn.com/h40/jm.png"),
+    ISK("Coroa Islandesa","https://flagcdn.com/h40/is.png"),
+    PAB("Balboa Panamenho", "https://flagcdn.com/h40/pa.png"),
+    NAD("Dólar Namíbio", "https://flagcdn.com/h40/na.png"),
+    VEF("Bolívar Venezuelano", "https://flagcdn.com/h40/ve.png"),
+    XAF("Franco CFA Central", "https://flagcdn.com/h40/cf.png"),
+    BBD("Dólar de Barbados", "https://flagcdn.com/h40/bb.png"),
+    LBP("Libra Libanesa", "https://flagcdn.com/h40/lb.png"),
+    HRK("Kuna Croata", "https://flagcdn.com/h40/hr.png"),
+    RON("Leu Romeno", "https://flagcdn.com/h40/ro.png"),
+    XOF("Franco CFA Ocidental", "https://flagcdn.com/h40/ne.png"),
+    KES("Shilling Queniano", "https://flagcdn.com/h40/ke.png"),
+    XCD("Dólar do Caribe Oriental", "https://i.postimg.cc/Ls0t2qL3/xcd.png"),
+    PKR("Rúpia Paquistanesa", "https://flagcdn.com/h40/pk.png"),
+    CZK("Coroa Checa", "https://flagcdn.com/h40/cz.png"),
+    OMR("Rial Omanense", "https://flagcdn.com/h40/om.png"),
+    LKR("Rúpia de Sri Lanka", "https://flagcdn.com/h40/lk.png"),
     ;
 
     companion object {
