@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintEnd_toStartOf="@id/tv_coin_abbr"
         app:layout_constraintTop_toBottomOf="@id/fcv_coin_button_list"
         android:enabled="false"
         >
@@ -41,7 +42,7 @@
             style="@style/Theme.CoinConverter.TextInputLayout.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:text="0,00" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/til_value"
-        app:layout_constraintStart_toEndOf="@id/til_value"
+        app:layout_constraintEnd_toStartOf="@id/gl_spacer"
         tools:text="USD" />
 
     <View
@@ -119,12 +120,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/layout_extra_padding" />
+        app:layout_constraintGuide_begin="@dimen/layout_half_padding" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_spacer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="60dp" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/layout_extra_padding" />
+        app:layout_constraintGuide_end="@dimen/layout_half_padding" />
 </androidx.constraintlayout.widget.ConstraintLayout>

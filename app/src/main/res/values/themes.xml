@@ -26,6 +26,7 @@
     <style name="Theme.CoinConverter.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="suffixTextColor">@color/carolina_blue</item>
         <item name="suffixTextAppearance">@style/Theme.CoinConverter.TextInputLayout.Suffix</item>
+        <item name="android:textAppearance">@style/Theme.CoinConverter.TextInputLayout.TextInputEditText</item>
         <item name="android:gravity">bottom|center</item>
         <item name="android:layout_gravity">bottom</item>
         <item name="android:textAlignment">gravity</item>
@@ -43,9 +44,12 @@
         <item name="android:layout_marginBottom">24sp</item>
     </style>
 
-    <style name="Theme.CoinConverter.TextInputLayout.TextInputEditText" parent="TextAppearance.MaterialComponents.Headline3">
+    <style name="Theme.CoinConverter.TextInputLayout.TextInputEditText">
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textAlignment">textEnd</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">50sp</item>
     </style>
 
     <style name="Theme.CoinConverter.Divider.Text" parent="TextAppearance.MaterialComponents.Caption">
