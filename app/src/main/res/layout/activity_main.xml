@@ -35,7 +35,6 @@
         app:layout_constraintStart_toStartOf="@id/gl_start"
         app:layout_constraintEnd_toStartOf="@id/tv_coin_abbr"
         app:layout_constraintTop_toBottomOf="@id/fcv_coin_button_list"
-        android:enabled="false"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -45,11 +44,7 @@
             android:inputType="number"
             android:digits="0123456789"
             android:maxLength="10"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="16sp"
-            app:autoSizeMaxTextSize="30sp"
-            app:autoSizeStepGranularity="2sp"
-            android:text="1234567,00" />
+            android:text="0,00" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -84,12 +79,10 @@
     <ImageButton
         android:id="@+id/btn_convert"
         style="@style/Theme.CoinConverter.ImageButton"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/layout_extra_padding"
         android:contentDescription="@string/edit_value_to_converter"
-        android:minHeight="48dp"
-        android:src="@drawable/ic_done"
+        android:src="@drawable/ic_exchange"
         app:tint="@color/green_crayola"
         android:visibility="gone"
         tools:visibility="visible"
@@ -99,11 +92,9 @@
     <ImageButton
         android:id="@+id/btn_edit"
         style="@style/Theme.CoinConverter.ImageButton"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/layout_extra_padding"
         android:contentDescription="@string/edit_value_to_converter"
-        android:minHeight="48dp"
         android:src="@drawable/ic_edit"
         android:visibility="visible"
         tools:visibility="invisible"

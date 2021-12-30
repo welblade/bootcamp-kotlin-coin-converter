@@ -1,19 +1,13 @@
 package br.com.dio.coinconverter.ui
 
-import android.graphics.Rect
 import android.os.Bundle
-import android.text.InputFilter
-import android.text.Spanned
-import android.text.method.TransformationMethod
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import br.com.dio.coinconverter.R
 import br.com.dio.coinconverter.core.extensions.*
 import br.com.dio.coinconverter.core.utils.MaskWatcher
@@ -32,11 +26,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        bindListeners()
-        bindingObservers()
-        setFragment()
         setSupportActionBar(binding.toolbar)
+        setFragment()
         setRecyclerView()
+        bindingObservers()
+        bindListeners()
     }
 
     private fun setRecyclerView() {
@@ -78,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 is MainViewModel.State.Success -> {
                     progress.dismiss()
-                    exchangeRateAdapter.apply{
+                    exchangeRateAdapter.apply {
                         submitList(it.response.values.toList())
                     }
                 }
@@ -89,30 +83,39 @@ class MainActivity : AppCompatActivity() {
     private fun bindListeners() {
         buttonListFragment.doAfterCoinChanged {
             binding.tvCoinAbbr.text = it.name
+            val valueToConvert = binding.tilValue.text.replace(",", ".").toDouble()
+            if(valueToConvert > 0.0) setButtonConvertVisible(true)
         }
 
         binding.tilValue.editText!!.addTextChangedListener(MaskWatcher())
+        binding.tilValue.editText!!.doAfterTextChanged {
+            val valueToConvert = binding.tilValue.text.replace(",", ".").toDouble()
+            if(valueToConvert > 0.0) setButtonConvertVisible(true)
+        }
 
         binding.btnConvert.setOnClickListener {
-            binding.tilValue.isEnabled = false
             it.hideSoftKeyboard()
             convertValue()
-            toggleButtonVisibility()
+            setButtonConvertVisible(false)
         }
         binding.btnEdit.setOnClickListener {
-            binding.tilValue.isEnabled = true
-            toggleButtonVisibility()
+            val textSize = binding.tilValue.editText!!.text.length
+            binding.tilValue.editText!!.apply {
+                requestFocus()
+                setSelection(0, textSize)
+                showSoftKeyboard()
+            }
         }
     }
-    private fun toggleButtonVisibility(){
-        val visibility = binding.btnEdit.visibility
-        binding.btnEdit.visibility = binding.btnConvert.visibility
-        binding.btnConvert.visibility = visibility
+
+    private fun setButtonConvertVisible (visible: Boolean) {
+        binding.btnEdit.visibility = if(!visible) View.VISIBLE else View.GONE
+        binding.btnConvert.visibility = if(visible) View.VISIBLE else View.GONE
     }
 
-    private fun convertValue(){
+    private fun convertValue() {
         val coinToConvert = buttonListFragment.getSelectedButton()
-        if (lastCoinUsed == null || lastCoinUsed != coinToConvert){
+        if (lastCoinUsed == null || lastCoinUsed != coinToConvert) {
             mainViewModel.getExchangeValues(coinToConvert.name)
         }
         val valueToConvert = binding.tilValue.text.replace(",", ".").toDouble()
