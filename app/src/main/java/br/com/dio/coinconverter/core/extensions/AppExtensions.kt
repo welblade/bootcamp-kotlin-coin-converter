@@ -4,8 +4,6 @@ import android.app.Activity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.google.android.material.textfield.TextInputLayout
-import java.math.BigDecimal
-import java.math.RoundingMode
 import java.text.NumberFormat
 import java.util.*
 

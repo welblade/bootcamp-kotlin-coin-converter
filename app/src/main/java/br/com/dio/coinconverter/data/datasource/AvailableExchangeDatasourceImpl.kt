@@ -6,7 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class AvailableExchangeDatasourceImpl(
-    private val asset: JsonDataAsset,
+    asset: JsonDataAsset,
 ) : AvailableExchangeDatasource {
     private val availableExchanges: List<AvailableExchange>
 

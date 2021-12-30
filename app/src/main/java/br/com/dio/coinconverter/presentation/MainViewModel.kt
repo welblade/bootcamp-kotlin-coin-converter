@@ -5,10 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.dio.coinconverter.data.model.ExchangeResponse
-import br.com.dio.coinconverter.data.model.ExchangeResponseValue
 import br.com.dio.coinconverter.domain.GetAvailableExchangesUseCase
 import br.com.dio.coinconverter.domain.GetExchangeValueUseCase
-import br.com.dio.coinconverter.domain.SaveExchangeUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -17,7 +15,6 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val saveExchangeUseCase: SaveExchangeUseCase,
     private val getExchangeUseCase: GetExchangeValueUseCase,
     private val getAvailableExchangesUseCase: GetAvailableExchangesUseCase,
 ) : ViewModel() {
@@ -55,7 +52,7 @@ class MainViewModel(
         }
     }
 
-    sealed class State() {
+    sealed class State {
         object Loading : State()
         data class Success(val response: ExchangeResponse) : State()
         data class Error(val error: Throwable) : State()

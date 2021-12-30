@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Coin Converter</string>
+    <string name="coin_s_origin_country_flag">Bandeira do país de origem da moeda</string>
+    <string name="exchange_rates">Taxas de Conversão</string>
+    <string name="edit_value_to_converter">Editar valor para converter</string>
+</resources>

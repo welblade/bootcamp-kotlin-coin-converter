@@ -6,7 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rv_coin_list"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_constraintTop_toTopOf="parent"

@@ -154,7 +154,7 @@ enum class Coin(val coinName: String, val iconUrl: String) {
 
     companion object {
         fun getByName(name: String):Coin {
-            return values().find { it.name == name } ?: Coin.BRL
+            return values().find { it.name == name } ?: BRL
         }
     }
 }

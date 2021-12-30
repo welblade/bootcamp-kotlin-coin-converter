@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package br.com.dio.coinconverter
 
 import android.app.Application

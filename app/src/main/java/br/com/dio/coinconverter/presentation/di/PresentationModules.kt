@@ -14,7 +14,7 @@ object PresentationModules {
 
     private fun viewModelModule(): Module {
         return module {
-            viewModel { MainViewModel(get(), get(), get()) }
+            viewModel { MainViewModel(get(), get()) }
             viewModel { CoinButtonListViewModel(get()) }
         }
     }

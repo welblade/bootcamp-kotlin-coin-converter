@@ -59,7 +59,11 @@ class ExchangeRateItemAdapter :
         }
         private fun setConvertedValue(item: ExchangeResponseValue) {
             val convertedValue = item.bid * valueToConvert
-            binding.tvConvertedValue.text = "${convertedValue.format(2)} ${item.codein}"
+            binding.tvConvertedValue.text = binding.root.context.getString(
+                R.string.convertion_result,
+                convertedValue.format(2),
+                item.codein
+            )
         }
 
         private fun setExchangeRate(item: ExchangeResponseValue) {

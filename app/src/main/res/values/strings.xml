@@ -1,13 +1,9 @@
 <resources>
     <string name="app_name">Coin Converter</string>
-    <string name="value">Value</string>
-    <string name="convert_from">Convert from</string>
-    <string name="to">To</string>
-    <string name="convert">Convert</string>
-    <string name="history">History</string>
-    <string name="save_to_history">Save to history</string>
     <string name="coin_s_origin_country_flag">Coin\'s origin coutry flag</string>
     <string name="exchange_rates">Exchange Rates</string>
     <string name="edit_value_to_converter">Edit value to converter</string>
-    <string name="exchange_rate_formated">1 %1$s = %3$s %2$s</string>
+    <string name="convertion_result" translatable="false">%1$s %2$s</string>
+    <string name="exchange_rate_formated" translatable="false">1 %1$s = %3$s %2$s</string>
+    <string name="initial_value" translatable="false">0,00</string>
 </resources>

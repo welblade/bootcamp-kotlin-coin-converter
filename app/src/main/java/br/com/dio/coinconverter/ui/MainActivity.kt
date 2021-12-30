@@ -1,15 +1,11 @@
 package br.com.dio.coinconverter.ui
 
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.dio.coinconverter.R
 import br.com.dio.coinconverter.core.extensions.*
 import br.com.dio.coinconverter.core.utils.MaskWatcher
 import br.com.dio.coinconverter.data.model.Coin
@@ -44,19 +40,6 @@ class MainActivity : AppCompatActivity() {
         transaction
             .replace(binding.fcvCoinButtonList.id, buttonListFragment)
             .commit()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_history) {
-            //startActivity(Intent(this, HistoryActivity::class.java))
-            Log.e("ok", "ok")
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun bindingObservers() {

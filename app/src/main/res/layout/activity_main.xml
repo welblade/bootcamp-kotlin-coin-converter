@@ -45,7 +45,7 @@
             android:digits="0123456789"
             android:maxLength="10"
             android:imeOptions="actionDone"
-            android:text="0,00" />
+            android:text="@string/initial_value" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -67,7 +67,6 @@
         app:layout_constraintTop_toBottomOf="@id/til_value" />
 
     <TextView
-        android:id="@+id/tv_rates"
         style="@style/Theme.CoinConverter.Divider.Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -119,7 +118,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="@dimen/layout_half_padding" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_spacer"
         android:layout_width="wrap_content"

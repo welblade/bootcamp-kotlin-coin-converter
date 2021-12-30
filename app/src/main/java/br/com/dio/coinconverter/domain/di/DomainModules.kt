@@ -13,8 +13,6 @@ object DomainModules {
     private fun useCaseModule(): Module {
         return module {
             factory { GetExchangeValueUseCase(get()) }
-            factory { SaveExchangeUseCase(get()) }
-            factory { ListExchangeUseCase(get()) }
             factory { ListCoinUseCase(get()) }
             factory { GetAvailableExchangesUseCase(get()) }
         }
