@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.dio.coinconverter.R
+import br.com.dio.coinconverter.core.extensions.format
 import br.com.dio.coinconverter.data.model.Coin
 import br.com.dio.coinconverter.data.model.ExchangeResponseValue
 import br.com.dio.coinconverter.databinding.ItemExchangeRateBinding
@@ -43,11 +44,11 @@ class ExchangeRateItemAdapter :
         fun bind(item: ExchangeResponseValue) {
             binding.tvAbbrName.text = item.codein
             binding.tvName.text = item.name.split("/").last()
-            setConvertedValue(item.bid)
+            setConvertedValue(item)
             setExchangeRate(item)
             setFlag(item)
             changeCoinListeners.add {
-                setConvertedValue(item.bid)
+                setConvertedValue(item)
             }
         }
         private fun setFlag(item: ExchangeResponseValue){
@@ -56,9 +57,9 @@ class ExchangeRateItemAdapter :
                 //.diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.ivIcon)
         }
-        private fun setConvertedValue(bid: Double) {
-            val convertedValue = bid * valueToConvert
-            binding.tvConvertedValue.text = convertedValue.toString()
+        private fun setConvertedValue(item: ExchangeResponseValue) {
+            val convertedValue = item.bid * valueToConvert
+            binding.tvConvertedValue.text = "${convertedValue.format(2)} ${item.codein}"
         }
 
         private fun setExchangeRate(item: ExchangeResponseValue) {

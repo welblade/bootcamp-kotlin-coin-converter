@@ -4,6 +4,8 @@ import android.app.Activity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.google.android.material.textfield.TextInputLayout
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.text.NumberFormat
 import java.util.*
 
@@ -25,3 +27,5 @@ fun View.showSoftKeyboard() {
 fun Double.formatCurrency(locale: Locale = Locale.getDefault()): String {
     return NumberFormat.getCurrencyInstance(locale).format(this)
 }
+
+fun Double.format(decimals: Int) = "%.${decimals}f".format(this)
