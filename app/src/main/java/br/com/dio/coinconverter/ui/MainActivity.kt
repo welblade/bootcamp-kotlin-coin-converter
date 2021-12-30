@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             if(valueToConvert > 0.0) setButtonConvertVisible(true)
         }
         binding.tilValue.editText!!.setOnEditorActionListener { textView, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEND) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 textView.hideSoftKeyboard()
                 convertValue()
                 this.setButtonConvertVisible(false)
