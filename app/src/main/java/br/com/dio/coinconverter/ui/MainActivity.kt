@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -91,6 +92,15 @@ class MainActivity : AppCompatActivity() {
         binding.tilValue.editText!!.doAfterTextChanged {
             val valueToConvert = binding.tilValue.text.replace(",", ".").toDouble()
             if(valueToConvert > 0.0) setButtonConvertVisible(true)
+        }
+        binding.tilValue.editText!!.setOnEditorActionListener { textView, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                textView.hideSoftKeyboard()
+                convertValue()
+                this.setButtonConvertVisible(false)
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
         }
 
         binding.btnConvert.setOnClickListener {

@@ -44,6 +44,7 @@
             android:inputType="number"
             android:digits="0123456789"
             android:maxLength="10"
+            android:imeOptions="actionSend"
             android:text="0,00" />
     </com.google.android.material.textfield.TextInputLayout>
 

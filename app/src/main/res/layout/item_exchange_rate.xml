@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/layout_half_padding"
+    app:cardCornerRadius="8dp"
     android:clickable="true"
     android:focusable="true"
     android:theme="@style/Theme.CoinConverter.CardView.Button">
@@ -14,24 +15,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/coin_button_background"
-        android:padding="@dimen/layout_half_padding">
-
-        <ImageView
-            android:id="@+id/iv_icon"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:contentDescription="@string/coin_s_origin_country_flag"
+        android:padding="@dimen/layout_padding">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            app:cardCornerRadius="3dp"
+            android:elevation="0dp"
+            app:cardElevation="0dp"
+            >
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="48dp"
+                android:layout_height="32dp"
+                android:contentDescription="@string/coin_s_origin_country_flag"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic"
+                />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tv_abbr_name"
             style="@style/Theme.CoinConverter.CardView.Button.Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/iv_icon"
-            app:layout_constraintTop_toTopOf="@id/iv_icon"
+            app:layout_constraintStart_toEndOf="@id/cv_icon"
+            app:layout_constraintTop_toTopOf="@id/cv_icon"
             android:layout_marginStart="@dimen/layout_half_padding"
             tools:text="USD" />
 
@@ -40,7 +52,7 @@
             style="@style/Theme.CoinConverter.CardView.Button.Subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/iv_icon"
+            app:layout_constraintBottom_toBottomOf="@id/cv_icon"
             app:layout_constraintStart_toStartOf="@id/tv_abbr_name"
             app:layout_constraintTop_toBottomOf="@id/tv_abbr_name"
             tools:text="@tools:sample/full_names" />
@@ -51,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/iv_icon"
+            app:layout_constraintTop_toTopOf="@id/cv_icon"
             android:textSize="18sp"
             tools:text="@tools:sample/full_names" />
 
@@ -61,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/exchange_rate_formated"
-            app:layout_constraintBottom_toBottomOf="@id/iv_icon"
+            app:layout_constraintBottom_toBottomOf="@id/cv_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_converted_value" />
 

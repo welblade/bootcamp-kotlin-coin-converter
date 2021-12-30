@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../Downloads/mobile-dev/gradle/caches/transforms-3/936169c150d443c9416017cf85e9eb73/transformed/appcompat-1.2.0/res/drawable/abc_btn_default_mtrl_shape.xml" value="0.22083333333333333" />
+        <entry key="app/src/main/res/drawable/background_flag.xml" value="0.2" />
         <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.22083333333333333" />
         <entry key="app/src/main/res/font/inter.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/activity_history.xml" value="0.2046875" />
